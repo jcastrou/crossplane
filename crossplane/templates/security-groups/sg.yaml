@@ -18,18 +18,6 @@ spec:
         ipRanges:
           - cidrIp: 10.0.1.0/24
           - cidrIp: 10.0.2.0/24
-      - fromPort: 80
-        toPort: 80
-        ipProtocol: tcp
-        ipRanges:
-          - cidrIp: 10.0.1.0/24
-          - cidrIp: 10.0.2.0/24
-      - fromPort: 80
-        toPort: 80
-        ipProtocol: tcp
-        ipRanges:
-          - cidrIp: 10.0.1.0/24
-          - cidrIp: 10.0.2.0/24
     egress:
       - ipProtocol: "-1"
         ipRanges:

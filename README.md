@@ -59,7 +59,7 @@ kubectl apply -f provider-cnf.yaml
 Go to the crossplane/templates path and run the following commands.
 1. Create VPC and components
 ```
-kubectl apply -k vpc
+    kubectl apply -k vpc
 ```
 2. Create policies
 ```
