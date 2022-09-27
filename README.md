@@ -84,7 +84,7 @@ Go to the crossplane/templates path and run the following commands.
 
 ### App
 
-First we must prepare two files, Both are in crossplane/templates/role-sa/, in both files the account number must be placed and in the same way the OIDC number of the previously created cluster. Once you change them you can continue with the following steps.
+First we must prepare two files, Both are in crossplane/templates/role-sa/, in both files the account number must be placed and in the same way the OIDC number of the previously created cluster. Once you change them you can continue with the following steps. The service-account.yaml file located inside the app folder must also be updated.
 1. Apply the role of the service account.
 ```
 kubectl apply -k role-sa
