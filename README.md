@@ -1,31 +1,9 @@
-### Crossplane
-1. Create crossplane-system namespace
-```
-kubectl create namespace crossplane-system
-```
-2. Add and install the Crossplane related helm chart.
-```
-helm repo add crossplane-stable https://charts.crossplane.io/stable
-helm repo update
-helm install crossplane --namespace crossplane-system crossplane-stable/crossplane
-```
-3. Install crossplane cli and install the respective component.
-```
-curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
-sudo mv kubectl-crossplane /usr/local/bin
-kubectl crossplane install configuration registry.upbound.io/xp/getting-started-with-aws:v1.9.1
-```
-4. Create the file related to the AWS account.
-```
-AWS_PROFILE=default && echo -e "[default]\naws_access_key_id = $(aws configure get aws_access_key_id --profile $AWS_PROFILE)\naws_secret_access_key = $(aws configure get aws_secret_access_key --profile $AWS_PROFILE)" > creds.conf
-```
-5. Create the secret that contains the AWS credentials.
 # Crossplane project.
 
 The following project describes how infrastructure can be created through crossplane, using AWS services.
 Before starting with the explanation it is important to clarify the following assumptions.
 - There must be a previous kubernetes cluster where Crossplane can be installed. (It can be through terraform, cloudformation or even use minikube)
-- You must have previously installed helm, kubectl.
+- You must have previously installed helm, kubectl,eksctl.
 - The user who will use crossplane must have the necessary permissions to create infrastructure in AWS.
 
 ## Main Diagram.
