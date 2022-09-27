@@ -1,0 +1,38 @@
+
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: app-cluster-sg
+spec:
+  forProvider:
+    region: us-east-1
+    vpcIdRef:
+      name: app-vpc  
+    groupName: my-app-ekscluster-sg
+    description: Cluster communication with worker nodes
+    ingress:
+      - fromPort: 80
+        toPort: 80
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 10.0.1.0/24
+          - cidrIp: 10.0.2.0/24
+      - fromPort: 80
+        toPort: 80
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 10.0.1.0/24
+          - cidrIp: 10.0.2.0/24
+      - fromPort: 80
+        toPort: 80
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 10.0.1.0/24
+          - cidrIp: 10.0.2.0/24
+    egress:
+      - ipProtocol: "-1"
+        ipRanges:
+          - cidrIp: 0.0.0.0/0
+  providerConfigRef:
+    name: aws-provider

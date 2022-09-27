@@ -1,0 +1,12 @@
+---
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  name: secret-manager-policy
+spec:
+  forProvider:
+    policyArn: arn:aws:iam::<ACCOUNT_NUMBER>:policy/secret-manager-policy #CHANGEACCOUNTNUMBER
+    roleNameRef:
+      name: sa-role
+  providerConfigRef:
+    name: aws-provider

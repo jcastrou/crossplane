@@ -1,0 +1,25 @@
+---
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: Policy
+metadata:
+  name: secret-manager-policy  
+spec:
+  forProvider:
+    name: secret-manager-policy
+    document: |
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Sid": "",
+                  "Effect": "Allow",
+                  "Action": [
+                      "secretsmanager:GetSecretValue",
+                      "secretsmanager:DescribeSecret"
+                  ],
+                  "Resource": "arn:*:secretsmanager:*:*:secret:main-app-secrets"
+              }
+          ]
+      }
+  providerConfigRef:
+    name: aws-provider

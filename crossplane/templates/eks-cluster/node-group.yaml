@@ -1,0 +1,26 @@
+
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: app-node-group
+  labels:
+    node-group: "true"
+spec:
+  forProvider:
+    region: us-east-1
+    clusterNameRef:
+      name: app-cluster
+    subnetRefs:
+      - name: app-subnet1
+      - name: app-subnet2
+    nodeRoleRef:
+      name: eks-role
+    scalingConfig:
+      desiredSize: 3
+      maxSize: 5
+      minSize: 2
+    instanceTypes:
+      - t3a.medium
+    diskSize: 5
+  providerConfigRef:
+    name: aws-provider

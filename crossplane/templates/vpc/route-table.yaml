@@ -1,0 +1,22 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: RouteTable
+metadata:
+  name: app-routetable
+spec:
+  forProvider:
+    region: us-east-1
+    routes:
+      - destinationCidrBlock: 0.0.0.0/0
+        gatewayIdRef:
+          name: app-internetgateway
+    associations:
+      - subnetIdRef:
+          name: app-subnet1
+      - subnetIdRef:
+          name: app-subnet2
+    vpcIdRef:
+      name: app-vpc
+  providerConfigRef:
+    name: aws-provider
+    

@@ -1,0 +1,26 @@
+---
+apiVersion: eks.aws.crossplane.io/v1beta1
+kind: Cluster
+metadata:
+  name: app-cluster
+  labels:
+    example: "true"
+spec:
+  forProvider:
+    region: us-east-1
+    roleArnRef:
+      name: eks-role
+    resourcesVpcConfig:
+      endpointPrivateAccess: true
+      endpointPublicAccess: true
+      subnetIdRefs:
+        - name: app-subnet1
+        - name: app-subnet2        
+      securityGroupIdRefs:
+        - name: app-cluster-sg
+    version: "1.23"
+  writeConnectionSecretToRef:
+    name: cluster-conn
+    namespace: default
+  providerConfigRef:
+    name: aws-provider

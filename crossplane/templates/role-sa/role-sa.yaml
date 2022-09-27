@@ -1,0 +1,32 @@
+---
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: Role
+metadata:
+  name: sa-role
+spec:
+  forProvider:
+    assumeRolePolicyDocument: |
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Federated": "arn:aws:iam::<ACCOUNT_NUMBER>:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/<OIDC>"
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                        "StringEquals": {
+                            "oidc.eks.us-east-1.amazonaws.com/id/<OIDC>:aud": "sts.amazonaws.com",
+                            "oidc.eks.us-east-1.amazonaws.com/id/<OIDC>:sub": "system:serviceaccount:default:secret-manager-service-account"
+                        }
+                    }
+                }
+            ]
+        }
+    tags:
+      - key: app
+        value: main
+  providerConfigRef:
+    name: aws-provider
