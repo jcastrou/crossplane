@@ -57,25 +57,30 @@ kubectl apply -f provider-cnf.yaml
 
 ### AWS resources
 Go to the crossplane/templates path and run the following commands.
-1. Create VPC and components
+1. Create Secret Manager
+```
+    kubectl apply -k secret-manager
+```
+**NOTE:** 
+_Once the secret manager is created, you must copy the ARN into the following files:_
+- app/secretProviderClass
+- policies/policy-sm.yaml
+
+2. Create VPC and components
 ```
     kubectl apply -k vpc
 ```
-2. Create policies
+3. Create policies
 ```
     kubectl apply -k policies   
 ```
-3. Create EKS roel
+4. Create EKS role
 ```
     kubectl apply -k role-eks
 ```
-4. Create security group
+5. Create security group
 ```
     kubectl apply -k security-groups
-```
-5. Create Secret Manager
-```
-    kubectl apply -k secret-manager
 ```
 6. Create EKS cluster
 ```

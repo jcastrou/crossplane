@@ -5,7 +5,7 @@ metadata:
   name: secret-manager-policy
 spec:
   forProvider:
-    policyArn: arn:aws:iam::485654195944:policy/secret-manager-policy #CHANGEACCOUNTNUMBER
+    policyArn: arn:aws:iam::<ACCOUNT_ID>:policy/secret-manager-policy #CHANGEACCOUNTNUMBER
     roleNameRef:
       name: sa-role
   providerConfigRef:
