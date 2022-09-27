@@ -56,7 +56,7 @@ Before starting with the explanation it is important to clarify the following as
 - The user who will use crossplane must have the necessary permissions to create infrastructure in AWS.
 
 ## Main Diagram.
-![](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![](https://github.com/jcastrou/crossplane/blob/main/main-diagram.jpg?raw=true)
 The solution is to create a password, user and endpoint in Secrets Manager, at the same time an EKS cluster and deploy within this cluster a MySql database and a Wordpress site. Both pods used credentials obtained from the secret manager, and the template that we will use is a secretProviderClass that is responsible for mapping the necessary values. The pods will use a volume that is where the passwords will be accessed, for this functionality we use CSI.
 It is important to mention that from Crossplane we will create services such as VPC (subnets, internetgateway, routes, security groups), Secrets Manager, EKS (node-groups), IAM (Policies, Role), among others.
 
