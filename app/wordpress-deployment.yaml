@@ -44,6 +44,7 @@ spec:
         app: wordpress
         tier: frontend
     spec:
+      serviceAccountName: secret-manager-service-account
       containers:
       - image: wordpress:4.8-apache
         name: wordpress
@@ -51,26 +52,21 @@ spec:
         - name: WORDPRESS_DB_HOST
           valueFrom:
             secretKeyRef:
-              name: main-app-secrets
+              name: app-secrets
               key: endpoint
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: main-app-secrets
+              name: app-secrets
               key: password
         ports:
         - containerPort: 80
           name: wordpress
         volumeMounts:
-        # - name: wordpress-persistent-storage
-        #   mountPath: /var/www/html
         - name: secrets-store-inline
           mountPath: "/mnt/secrets-store"
           readOnly: true
       volumes:
-      # - name: wordpress-persistent-storage
-      #   persistentVolumeClaim:
-      #     claimName: wp-pv-claim
       - name: secrets-store-inline
         csi:
           driver: secrets-store.csi.k8s.io

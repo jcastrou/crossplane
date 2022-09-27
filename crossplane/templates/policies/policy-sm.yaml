@@ -17,7 +17,7 @@ spec:
                       "secretsmanager:GetSecretValue",
                       "secretsmanager:DescribeSecret"
                   ],
-                  "Resource": "arn:*:secretsmanager:*:*:secret:main-app-secrets"
+                  "Resource": "arn:aws:secretsmanager:us-east-1:<ACCOUNT_ID>:secret:main-app-secrets-####" #SecretARN
               }
           ]
       }
